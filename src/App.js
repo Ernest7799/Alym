@@ -1,11 +1,12 @@
 import Header from './components/Header';
-import ProductItem from './components/ProductItem';
+import Productlist from './components/product-list';
 import './App.css';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Product from './components/Product';
 import Menulist from './components/menu-list';
 import CartContext from './context/CartContext';
+import Basket from './components/Basket';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,13 +15,16 @@ import {
 
 function App() {
   const [data, setData] = useState([])
-  const [cart, setCart] = useState([{name: 'Asan'}])
-  const addToCart = () =>{
-    console.log('click');
+  const [cart, setCart] = useState([])
+  const addToCart = (basket) =>{
+    // console.log(basket);
+    setCart([...cart, basket])
   }
   const store = {
-    cart: [cart, setCart]
+    cart,
+    addToCart
   }
+  // console.log('корзина', cart);
 
 
   useEffect(() => {
@@ -41,6 +45,12 @@ function App() {
             </Route>
             <Route exact path='/menu/:menu'>
               <Menulist />
+            </Route>
+            <Route exact path='/product/:product'>
+              <Productlist />
+            </Route>
+            <Route exact path='/basket'>
+              <Basket />
             </Route>
           </Switch>
         </div>

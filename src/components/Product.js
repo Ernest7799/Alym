@@ -1,9 +1,10 @@
-import React,{useContext} from 'react';
-import ProductItem from './ProductItem';
+import React, { useContext } from 'react';
 import CartContext from '../context/CartContext';
+import { Card,  } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const Product = ({ data }) => {
     const cart = useContext(CartContext)
-    console.log(cart)
+    console.log(data)
     return (
         <div>
             <h1>Products:({data.length})</h1>
@@ -11,11 +12,16 @@ const Product = ({ data }) => {
                 {
                     data.map((e, i) => {
                         return (
-                            <div>
-                                <ProductItem key={i} children={e.strCategory} img={e.strCategoryThumb} />
-                                <p>{cart.cart[0].name}</p>
-                            </div>
-                            
+                            <Card style={{ width: '18rem' }}>
+                                <Link to={`/product/${e.strCategory}`}>
+                                    <Card.Img variant="top" src={e.strCategoryThumb} />
+                                    <Card.Body>
+                                        <Card.Title>{e.strCategory}</Card.Title>
+                                        {/* <Button onClick={} variant="primary">В корзину</Button> */}
+                                    </Card.Body>
+                                </Link>
+                            </Card>
+
                         )
                     })
                 }

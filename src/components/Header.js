@@ -30,7 +30,7 @@ const Header = () => {
                             navbarScroll
                         >
                             <Nav.Link href="#action1">Home</Nav.Link>
-                            <Nav.Link href="#action2">Basket</Nav.Link>
+                            <Nav.Link ><Link to='/basket'>Basket</Link></Nav.Link>
                             <NavDropdown title="Categories" id="navbarScrollingDropdown">
                                 {
                                     list.map((e, i) => {
